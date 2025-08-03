@@ -65,7 +65,7 @@ def shorten_url():
         # Create mapping
         mapping = url_store.create_mapping(short_code, normalized_url)
         
-        # Generate short URL
+        # Generate short URL using request host
         short_url = f"{request.host_url.rstrip('/')}/{short_code}"
         
         return jsonify({
@@ -126,5 +126,6 @@ def get_stats(short_code):
         "created_at": mapping.created_at.isoformat()
     })
 
+# For local development
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(debug=True)
